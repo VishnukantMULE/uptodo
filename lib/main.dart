@@ -1,8 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uptodo/routes/app_pages.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main()  async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform
+  );
   runApp(const UpToApp());
 }
 
@@ -15,7 +22,7 @@ class UpToApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
-      home: Scaffold(
+      home: const Scaffold(
         body: Center(
           child: Text("hello"),
         ),

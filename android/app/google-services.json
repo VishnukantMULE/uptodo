@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "765877075759",
+    "firebase_url": "https://personal-ee05e-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "personal-ee05e",
+    "storage_bucket": "personal-ee05e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765877075759:android:ac0646e554a19f252f2bda",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC60WCUTl6IgD_-Dc62fEhuLO45RfiML5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765877075759:android:4002cb064d1acbf42f2bda",
+        "android_client_info": {
+          "package_name": "com.example.uptodo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC60WCUTl6IgD_-Dc62fEhuLO45RfiML5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765877075759:android:04fba53fa6de7e592f2bda",
+        "android_client_info": {
+          "package_name": "com.uptodo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC60WCUTl6IgD_-Dc62fEhuLO45RfiML5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
