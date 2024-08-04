@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,15 @@ class Splashview extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 3),(){
       // Get.offNamed(Routes.home);
-      Get.offNamed(Routes.intro);
+      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+        if (user != null) {
+          Get.offNamed(Routes.home);
+        } else {
+          Get.offNamed(Routes.intro);
+        }
+      });
+
+
 
     });
     return Scaffold(

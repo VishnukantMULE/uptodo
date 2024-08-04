@@ -18,7 +18,7 @@ class AuthOptionView extends StatelessWidget {
             onPressed: () {
               Get.offNamed(Routes.intro);
             },
-            icon: Icon(
+            icon: const Icon(
               CupertinoIcons.back,
               color: AppColors.white,
             )),

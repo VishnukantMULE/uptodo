@@ -57,7 +57,7 @@ class LoginView extends StatelessWidget {
             label: "Password",
             isPassword: true,
           ),
-          AppPrimaryButton(onclick: () {}, text: "Login"),
+          AppPrimaryButton(onclick: () {loginController.login(loginController.usernameTextEditingController.text, loginController.passwordTextEditingController.text);}, text: "Login"),
           const SizedBox(
             height: 40,
           ),
