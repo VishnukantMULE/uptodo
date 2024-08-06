@@ -29,12 +29,12 @@ class RegisterView extends StatelessWidget {
           const SizedBox(height: 40,),
           const AppHeadingText(text: "Register"),
           const SizedBox(height: 20,),
-          AppInputTextfield(hintText: "Enter your Username", textEditingController: registerController.usernameController, icon: Icon(Icons.person), label: "Username", isPassword: false),
-          AppInputTextfield(hintText: "* * * * * * * *", textEditingController: registerController.passwordController, icon: Icon(Icons.person), label: "Password", isPassword: true),
-          AppInputTextfield(hintText: "* * * * * * * *", textEditingController: registerController.rePasswordController, icon: Icon(Icons.person), label: "Confirm Password", isPassword: true),
+          AppInputTextfield(hintText: "Enter your Username", textEditingController: registerController.usernameController, icon: Icon(Icons.person), label: "Username", isPassword: false, errotext: '', isError: false,),
+          AppInputTextfield(hintText: "* * * * * * * *", textEditingController: registerController.passwordController, icon: Icon(Icons.person), label: "Password", isPassword: true, errotext: '', isError: false,),
+          AppInputTextfield(hintText: "* * * * * * * *", textEditingController: registerController.rePasswordController, icon: Icon(Icons.person), label: "Confirm Password", isPassword: true, errotext: '', isError: false,),
           AppPrimaryButton(onclick: (){
             registerController.registerUserEmailPass(registerController.usernameController.text, registerController.passwordController.text);
-          }, text: "Register"),
+          }, text: "Register", enable: true,),
           const SizedBox(height: 30,),
           const Row(
             children: [

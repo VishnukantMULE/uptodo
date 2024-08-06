@@ -41,23 +41,84 @@ class LoginView extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          AppInputTextfield(
-            hintText: "Enter Your Username",
-            textEditingController:
-                loginController.usernameTextEditingController,
-            icon: const Icon(Icons.person),
-            label: "User Name",
-            isPassword: false,
-          ),
-          AppInputTextfield(
-            hintText: ".* * * * * * * * * *",
-            textEditingController:
-                loginController.passwordTextEditingController,
-            icon: const Icon(Icons.person),
-            label: "Password",
-            isPassword: true,
-          ),
-          AppPrimaryButton(onclick: () {loginController.login(loginController.usernameTextEditingController.text, loginController.passwordTextEditingController.text);}, text: "Login"),
+
+      Obx((){
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Email",
+              style: TextStyle(color: AppColors.white, fontSize: 18),
+              textAlign: TextAlign.left,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextField(
+              style: const TextStyle(color: AppColors.white),
+              obscureText: false,
+              onChanged: (val){
+                loginController.validateEmail(val);
+              },
+              decoration: InputDecoration(
+                errorText: loginController.loginModel.isUserNameError.value==true?loginController.loginModel.emailErrorText.value:null,
+                hintText: "Enter User Name",
+                hintStyle: const TextStyle(color: AppColors.white500),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                // icon: icon,
+              ),
+              controller: loginController.usernameTextEditingController,
+            ),
+            const SizedBox(
+              height: 30,
+            )
+          ],
+        );
+      }),
+
+          Obx((){
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Password",
+                  style: TextStyle(color: AppColors.white, fontSize: 18),
+                  textAlign: TextAlign.left,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextField(
+                  style: const TextStyle(color: AppColors.white),
+                  obscureText: true,
+                  onChanged: (val){
+                    loginController.validatePassword(val);
+                  },
+                  decoration: InputDecoration(
+                    errorText: loginController.loginModel.isPasswordError.value==true?loginController.loginModel.passwordErrorText.value:null,
+                    hintText: "Enter User Name",
+                    hintStyle: const TextStyle(color: AppColors.white500),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                    // icon: icon,
+                  ),
+                  controller: loginController.passwordTextEditingController,
+                ),
+                const SizedBox(
+                  height: 30,
+                )
+              ],
+            );
+          }),
+          Obx((){
+            return AppPrimaryButton(
+                onclick: () {
+                  loginController.loginModel.isFill.value==true?loginController.login(
+                      loginController.usernameTextEditingController.text,
+                      loginController.passwordTextEditingController.text):(){};
+                },
+                text: "Login", enable: loginController.loginModel.isFill.value==true,);
+
+          }),
           const SizedBox(
             height: 40,
           ),
@@ -65,19 +126,21 @@ class LoginView extends StatelessWidget {
             children: [
               Expanded(child: Divider()),
               AppText(text: "   Or   ", fontSize: 18),
-
               Expanded(child: Divider())
             ],
           ),
-           Row(
-
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Don’t have an account?",style: TextStyle(color: AppColors.white500,fontSize: 16),),
-              TextButton(onPressed: (){
-                Get.offNamed(Routes.registerView);
-              }, child: const AppText(text: "Register", fontSize: 18))
-
+              const Text(
+                "Don’t have an account?",
+                style: TextStyle(color: AppColors.white500, fontSize: 16),
+              ),
+              TextButton(
+                  onPressed: () {
+                    Get.offNamed(Routes.registerView);
+                  },
+                  child: const AppText(text: "Register", fontSize: 18))
             ],
           )
         ],

@@ -56,7 +56,7 @@ class IntroView extends StatelessWidget {
                   onclick: () {
                     introController.onNext();
                   },
-                  text: "Next")
+                  text: "Next", enable: true,)
             ],
           )
         ],

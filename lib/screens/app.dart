@@ -19,7 +19,7 @@ class _AppState extends State<App> {
   final List<Widget> _screens = [
     const IndexView(),
     const CalendarView(),
-    const AddTaskView(),
+     AddTaskView(),
     const FocusView(),
     const ProfileView()
   ];
@@ -28,37 +28,37 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: SizedBox(
-        width: isAddTask? 80:60,
-        height: isAddTask? 80:60,
-        child: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _currentIndex = 2;
-              isAddTask=true;
-
-            });
-          },
-          elevation: 1.0,
-          shape: const CircleBorder(),
-          backgroundColor: AppColors.primary,
-          splashColor: AppColors.primary,
-          child:  ClipOval(
-            child: Icon(
-              Icons.add,
-              color: AppColors.white,
-              size:isAddTask? 60:40,
-            ),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: SizedBox(
+      //   width: isAddTask? 80:60,
+      //   height: isAddTask? 80:60,
+      //   child: FloatingActionButton(
+      //     onPressed: () {
+      //       setState(() {
+      //         _currentIndex = 2;
+      //         isAddTask=true;
+      //
+      //       });
+      //     },
+      //     elevation: 1.0,
+      //     shape: const CircleBorder(),
+      //     backgroundColor: AppColors.primary,
+      //     splashColor: AppColors.primary,
+      //     child:  ClipOval(
+      //       child: Icon(
+      //         Icons.add,
+      //         color: AppColors.white,
+      //         size:isAddTask? 60:40,
+      //       ),
+      //     ),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         // backgroundColor: AppColors.black,
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.black,
 
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -72,7 +72,7 @@ class _AppState extends State<App> {
         showUnselectedLabels: false,
         unselectedLabelStyle: const TextStyle(
           fontSize: 20,
-          color: Colors.white
+          color: AppColors.black
         ),
         selectedLabelStyle: const TextStyle(
           color: Colors.white
@@ -86,7 +86,7 @@ class _AppState extends State<App> {
               icon: Icon(Icons.home_rounded), label: 'index'),
           BottomNavigationBarItem(
               icon: Icon(Icons.calendar_month), label: 'calendar'),
-          BottomNavigationBarItem(icon: Icon(null), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.add_circle,), label: ''),
           BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.clock), label: 'focus'),
           BottomNavigationBarItem(

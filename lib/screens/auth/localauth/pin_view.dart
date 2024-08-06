@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:uptodo/screens/auth/localauth/local_auth_controller.dart';
 import 'package:uptodo/theme/app_colors.dart';
 import 'package:uptodo/widgets/app_primary_button.dart';
 import 'package:uptodo/widgets/app_text.dart';
+import 'package:uptodo/widgets/pin_widget.dart';
 
 import '../../../routes/app_routes.dart';
 
@@ -13,6 +15,7 @@ class PinView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LocalAuthController localAuthController=Get.put(LocalAuthController());
     return Scaffold(
       backgroundColor: AppColors.black,
       appBar: AppBar(
@@ -58,99 +61,16 @@ class PinView extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          Form(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    height: 64,
-                    width: 68,
-                    child: TextFormField(
-                      obscureText: true,
-                      autofocus: true,
-                      keyboardType: TextInputType.number,
-                      onSaved: (pin1) {},
-                      onChanged: (value) {
-                        if (value.length == 1) {
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-                      maxLength: 1,
-                      decoration: const InputDecoration(
-                          counterText: "", border: OutlineInputBorder()),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: AppColors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 64,
-                    width: 68,
-                    child: TextFormField(
-                      obscureText: true,
-                      autofocus: true,
-                      keyboardType: TextInputType.number,
-                      onSaved: (pin2) {},
-                      onChanged: (value) {
-                        if (value.length == 1) {
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-                      maxLength: 1,
-                      decoration: const InputDecoration(
-                          counterText: "", border: OutlineInputBorder()),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: AppColors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 64,
-                    width: 68,
-                    child: TextFormField(
-                      obscureText: true,
-
-                      autofocus: true,
-                      keyboardType: TextInputType.number,
-                      onSaved: (pin3) {},
-                      onChanged: (value) {
-                        if (value.length == 1) {
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-                      maxLength: 1,
-                      decoration: const InputDecoration(
-                          counterText: "", border: OutlineInputBorder()),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: AppColors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 64,
-                    width: 68,
-                    child: TextFormField(
-                      obscureText: true,
-                      autofocus: true,
-                      keyboardType: TextInputType.number,
-                      onSaved: (pin4) {},
-                      onChanged: (value) {
-                        if (value.length == 1) {
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-                      maxLength: 1,
-                      decoration: const InputDecoration(
-                          counterText: "", border: OutlineInputBorder()),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: AppColors.white),
-                    ),
-                  )
-                ],
-              ),
-            ),
+          const AppText(text: "Please Enter a Pin", fontSize: 18),
+           PinWidget(pin1C: localAuthController.pin1E, pin2C: localAuthController.pin2E, pin3C: localAuthController.pin3E, pin4C:localAuthController.pin4E ,),
+          const AppText(text: "Re-Enter the Pin", fontSize: 18),
+          PinWidget(pin1C: localAuthController.pin1R, pin2C: localAuthController.pin2R, pin3C: localAuthController.pin3R, pin4C:localAuthController.pin4R ,),
+          const SizedBox(
+            height: 250,
           ),
-          SizedBox(height: 400,),
-          AppPrimaryButton(onclick: (){}, text:"Next" )
+          AppPrimaryButton(onclick: () {
+            localAuthController.checkMatch();
+          }, text: "Next", enable: true,)
         ],
       ),
     );

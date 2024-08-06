@@ -8,14 +8,18 @@ class AppInputTextfield extends StatelessWidget {
   final String label;
   final Icon icon;
   final bool isPassword;
-  const AppInputTextfield(
-      {super.key,
-      required this.hintText,
-      required this.textEditingController,
-      required this.icon,
-      required this.label,
-      required this.isPassword,
-      });
+  final String errotext;
+  final bool isError;
+  const AppInputTextfield({
+    super.key,
+    required this.hintText,
+    required this.textEditingController,
+    required this.icon,
+    required this.label,
+    required this.isPassword,
+    required this.errotext,
+    required this.isError
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +35,21 @@ class AppInputTextfield extends StatelessWidget {
           height: 10,
         ),
         TextField(
-          style: const TextStyle(
-            color: AppColors.white
-          ),
+          style: const TextStyle(color: AppColors.white),
           obscureText: isPassword,
           decoration: InputDecoration(
+            errorText: isError?errotext:null,
 
             hintText: hintText,
             hintStyle: const TextStyle(color: AppColors.white500),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
             // icon: icon,
-
           ),
           controller: textEditingController,
         ),
-        const SizedBox(height: 30,)
+        const SizedBox(
+          height: 30,
+        )
       ],
     );
   }

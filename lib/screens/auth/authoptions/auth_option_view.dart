@@ -59,7 +59,7 @@ class AuthOptionView extends StatelessWidget {
                 onclick: () {
                   Get.offNamed(Routes.loginView);
                 },
-                text: "Login"),
+                text: "Login", enable: true,),
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
