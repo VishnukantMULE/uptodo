@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:uptodo/screens/addtask/taskcategory/taskcategory_view.dart';
 import 'package:uptodo/screens/profile/profile_controller.dart';
 import 'package:uptodo/theme/app_colors.dart';
 import 'package:uptodo/widgets/app_input_textfield.dart';
@@ -34,32 +33,28 @@ class ProfileView extends StatelessWidget {
         children: [
 
           Container(
-            padding: EdgeInsets.all(40),
-            child:Column(
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.black500
+            padding: const EdgeInsets.all(40),
+            child:Obx((){
+              return Column(
+                key: Key(profileController.profileState.value.toString()),
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.black500
+                    ),
+                    child: ClipOval(
+                      // child: Image.network("https://firebasestorage.googleapis.com/v0/b/personal-ee05e.appspot.com/o/user_photos%2F1723023580221.jpg?alt=media&token=2b54abcf-23f9-486f-b9ee-56a2ccda5a76"),
+                      child: Image.network(profileController.profileModel.imagePath),
+                    ),
                   ),
-                  child: ClipOval(
-                    child: Image.asset("assets/images/img.png"),
-
-                  ),
-                ),
-                SizedBox(height: 10,),
-                StreamBuilder<QuerySnapshot>(stream:
-                    _firestore.collection("user").snapshots(), builder: (context,snapshot){
-
-                  final userDocs = snapshot.data?.docs;
-                  final userDoc = userDocs?[0];
-                  final userData = userDoc?.data() as Map<String, dynamic>;
-                  return AppText(text: userData["name"].toString(), fontSize: 18);
-                })
-              ],
-            ),
+                  const SizedBox(height: 10,),
+                  AppText(text: profileController.profileModel.name, fontSize: 18)
+                ],
+              );
+            }),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -115,7 +110,8 @@ class ProfileView extends StatelessWidget {
                             children: [
                               AppPrimaryButton(onclick: (){}, text: "Edit", enable: true),
                               AppPrimaryButton(onclick: (){
-                                profileController.saveUserName();
+                                profileController.updateUserName();
+                                Navigator.pop(context);
 
                               }, text: "Save", enable: true)
                             ],

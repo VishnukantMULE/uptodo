@@ -167,7 +167,7 @@ class AddTaskView extends StatelessWidget {
                     Obx(() {
                       return SelectButton(
                         text: 'Priority Task',
-                        isSelect: controller.taskModel.isPriotyTask.value,
+                        isSelect: controller.taskModel.isPriorityTask.value,
                         buttonClick: controller.onoffPriorityTask,
                       );
                     }),
@@ -198,7 +198,7 @@ class AddTaskView extends StatelessWidget {
                 Obx(() {
                   List<String> todolist =
                       controller.taskModel.todoList.toList();
-                  return controller.taskModel.isPriotyTask.value
+                  return controller.taskModel.isPriorityTask.value
                       ? TodoView(
                           subTaskList: controller.taskModel.todoList,
                           addsubTask: controller.addSubTask,

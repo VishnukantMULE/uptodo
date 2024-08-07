@@ -2,20 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:uptodo/screens/auth/localauth/local_auth_controller.dart';
+import 'package:uptodo/routes/app_routes.dart';
+import 'package:uptodo/screens/auth/pin/check_pin_controller.dart';
 import 'package:uptodo/theme/app_colors.dart';
 import 'package:uptodo/widgets/app_primary_button.dart';
 import 'package:uptodo/widgets/app_text.dart';
 import 'package:uptodo/widgets/pin_widget.dart';
 
-import '../../../routes/app_routes.dart';
-
-class PinView extends StatelessWidget {
-  const PinView({super.key});
+class CheckPinView extends StatelessWidget {
+  const CheckPinView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final LocalAuthController localAuthController=Get.put(LocalAuthController());
+    final CheckPinController controller=Get.put(CheckPinController());
     return Scaffold(
       backgroundColor: AppColors.black,
       appBar: AppBar(
@@ -28,9 +27,10 @@ class PinView extends StatelessWidget {
               CupertinoIcons.back,
               color: AppColors.white,
             )),
-        title: const AppText(text: "Set a new Pin", fontSize: 18),
+        title: const AppText(text: "please Enter Pin", fontSize: 18),
         centerTitle: true,
       ),
+
       body: ListView(
         padding: EdgeInsets.all(20),
         children: [
@@ -61,15 +61,17 @@ class PinView extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          const AppText(text: "Please Enter a Pin", fontSize: 18),
-           PinWidget(pin1C: localAuthController.pin1E, pin2C: localAuthController.pin2E, pin3C: localAuthController.pin3E, pin4C:localAuthController.pin4E ,),
-          const AppText(text: "Re-Enter the Pin", fontSize: 18),
-          PinWidget(pin1C: localAuthController.pin1R, pin2C: localAuthController.pin2R, pin3C: localAuthController.pin3R, pin4C:localAuthController.pin4R ,),
-          const SizedBox(
+          PinWidget(pin1C: controller.pin1Con, pin2C: controller.pin2Con, pin3C: controller.pin3Con, pin4C:controller.pin4Con ,),
+            const SizedBox(
             height: 250,
           ),
+
+          Obx((){
+            return controller.isError.value?const Text("Please Enter Correct Pin",style: TextStyle(color: Colors.red,fontSize: 20),textAlign: TextAlign.center,):const Text("");
+          }),
+
           AppPrimaryButton(onclick: () {
-            localAuthController.checkMatch();
+            controller.checkPin();
           }, text: "Next", enable: true,)
         ],
       ),

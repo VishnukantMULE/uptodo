@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uptodo/screens/index/index_controller.dart';
+import 'package:uptodo/screens/profile/profile_controller.dart';
 import 'package:uptodo/theme/app_colors.dart';
 import 'package:uptodo/widgets/app_heading_text.dart';
 import 'package:uptodo/widgets/app_text.dart';
@@ -31,9 +32,7 @@ class IndexView extends StatelessWidget {
                 border: Border.all(color: Colors.white),
                 borderRadius: BorderRadius.circular(50)),
             child: ClipOval(
-              child: Image.asset(
-                "assets/images/img.png",
-              ),
+              child: Image.network(profilePhotoLink),
             ),
           )
         ],

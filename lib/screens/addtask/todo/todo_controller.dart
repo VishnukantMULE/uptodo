@@ -10,8 +10,8 @@ class TodoController extends GetxController
   {
     model.todoList.removeAt(index);
     // print("list in String ${model.todoList.toString()}");
-    model.isPriotyTask.value=false;
-    model.isPriotyTask.value=true;
+    model.isPriorityTask.value=false;
+    model.isPriorityTask.value=true;
   }
 
 

@@ -7,12 +7,12 @@ class AddTaskModel
   late String title;
   late String description;
   late int selectedCategory;
-  RxBool isPriotyTask=false.obs;
+  RxBool isPriorityTask=false.obs;
   RxBool isDailyTask=true.obs;
   Rx<DateTime> startDate=DateTime.now().obs;
   Rx<DateTime> endDate=DateTime.now().obs;
 
-  late String subtask;
+  late String subtask="";
   RxBool isStartDateSelected=true.obs;
 
   bool status=false;

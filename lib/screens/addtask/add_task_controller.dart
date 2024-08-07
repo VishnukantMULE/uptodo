@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uptodo/service/firebase_service/firestore_service.dart';
 
 
 import 'add_task_model.dart';
@@ -48,28 +49,30 @@ class AddTaskController extends GetxController
 
   void onoffPriorityTask()
   {
-    taskModel.isPriotyTask.value^=true;
+    taskModel.isPriorityTask.value^=true;
     taskModel.isDailyTask.value^=true;
   }
   void onoffDailyTask()
   {
     taskModel.isDailyTask.value^=true;
-    taskModel.isPriotyTask.value^=true;
+    taskModel.isPriorityTask.value^=true;
   }
 
 
-  void createTask()
+  void createTask() async
   {
     taskModel.title=titlecontroller.text;
     taskModel.description=desctiptionController.text;
 
-    if(taskModel.isPriotyTask.value==true)
+    if(taskModel.isPriorityTask.value==true)
     {
       // DbService().createPriorityTask(taskModel.startDate.value.toString(), taskModel.endDate.value.toString(), taskModel.title, taskModel.description, taskModel.todoList.toString(),taskModel.statusList.toString());
+     await FirestoreService().createNewTask(taskModel.selectedCategory.toString(), taskModel.title, taskModel.description, taskModel.isPriorityTask.value, taskModel.isDailyTask.value, taskModel.startDate.value.toString(), taskModel.endDate.value.toString(), taskModel.todoList.toString(), taskModel.status, taskModel.statusList.toString(), "", "");
       print("Priority task Added ${taskModel.startDate.value.toString()},${taskModel.endDate.value.toString()}, ${taskModel.title}, ${taskModel.description}, ${taskModel.todoList.toString()},${taskModel.statusList.toString()}, selected Category: ${taskModel.selectedCategory}");
     }
     if(taskModel.isDailyTask.value==true)
     {
+      await FirestoreService().createNewTask(taskModel.selectedCategory.toString(), taskModel.title, taskModel.description, taskModel.isPriorityTask.value, taskModel.isDailyTask.value, taskModel.startDate.value.toString(), taskModel.endDate.value.toString(), taskModel.todoList.toString(), taskModel.status, taskModel.statusList.toString(), "", "");
       // DbService().createDailyTask(taskModel.startDate.value.toString(), taskModel.endDate.value.toString(), taskModel.title, taskModel.description,taskModel.status.toString());
       print("Daily Task Added");
     }
@@ -80,8 +83,8 @@ class AddTaskController extends GetxController
   {
     taskModel.todoList.add(subTaskController.text);
     subTaskController.text="";
-    taskModel.isPriotyTask.value=false;
-    taskModel.isPriotyTask.value=true;
+    taskModel.isPriorityTask.value=false;
+    taskModel.isPriorityTask.value=true;
 
   }
 

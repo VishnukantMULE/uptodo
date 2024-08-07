@@ -14,7 +14,8 @@ class Splashview extends StatelessWidget {
       // Get.offNamed(Routes.home);
       FirebaseAuth.instance.authStateChanges().listen((User? user) {
         if (user != null) {
-          Get.offNamed(Routes.home);
+          // Get.offNamed(Routes.home);1
+          Get.offNamed(Routes.checkPin);
         } else {
           Get.offNamed(Routes.intro);
         }
